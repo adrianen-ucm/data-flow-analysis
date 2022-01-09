@@ -1,0 +1,54 @@
+cabal-version:      3.4
+name:               data-flow-analysis
+version:            1.0.0.0
+
+author:               Adrián Enríquez Ballester
+maintainer:           adrianen@ucm.es
+
+extra-source-files:   example.while
+
+library
+    exposed-modules:  Variables,
+                      AST,
+                      Semantics,
+                      CFG,
+                      MonotoneFramework,
+                      LiveVariable,
+                      ConstantPropagation
+
+    other-extensions: AllowAmbiguousTypes,
+                      DataKinds,
+                      FlexibleContexts,
+                      GADTs,
+                      GeneralisedNewtypeDeriving,
+                      KindSignatures,
+                      ScopedTypeVariables,
+                      TypeApplications,
+                      TypeFamilies
+
+    build-depends:    base ^>=4.14.3.0,
+                      containers,
+                      array
+                      
+    ghc-options:      -Wall -O2
+    hs-source-dirs:   src
+    default-language: Haskell2010
+
+executable data-flow-analysis
+    main-is:          Main.hs
+    other-modules:    Parsing
+
+    other-extensions: AllowAmbiguousTypes,
+                      LambdaCase,
+                      OverloadedStrings,
+                      ScopedTypeVariables,
+                      TypeApplications
+
+    build-depends:    base ^>=4.14.3.0,
+                      aeson,
+                      req,
+                      data-flow-analysis
+
+    ghc-options:      -Wall -O2
+    hs-source-dirs:   app
+    default-language: Haskell2010
